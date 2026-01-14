@@ -57,7 +57,7 @@ class DiffVerifierMLP:
 
         return Zpp, ZD 
 
-  def certify_same_argmax(Zpp_logits: Zonotope, ZD_logits: Zonotope, label: int) -> bool:
+    def certify_same_argmax(Zpp_logits: Zonotope, ZD_logits: Zonotope, label: int) -> bool:
         l2, u2 = Zpp_logits.concretize()
         ld, ud = ZD_logits.concretize()
 
@@ -71,7 +71,6 @@ class DiffVerifierMLP:
             if margin2_lb + margind_lb <= 0.0:
                 return False
         return True
-
     def verify_one(self, x: torch.Tensor, eps: float) -> dict:
         x = x.to(self.device)
         x_flat = x.view(-1)
